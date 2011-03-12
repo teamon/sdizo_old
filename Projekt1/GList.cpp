@@ -17,6 +17,7 @@ GList::GList(const char * filename){
 		for(int j=0;j<x;j++){
 			in>>peak>>weight;
 			tab[i].push_back(Edge(peak,weight));
+			tab[peak].push_back(Edge(i,weight));
 		}
 	} 
 }
