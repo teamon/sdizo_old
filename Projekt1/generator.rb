@@ -23,9 +23,10 @@ when "matrix"
 when "list"
   all = (0..N-1).to_a
   File.open("data/list_#{N}_#{P}.txt", "w") do |file|
-    file.puts N
+    puts N
     N.times do |i|
-      file.puts all.sample((rand(10) < P) ? (rand(10)+1) : 0).join(" ")
+      x = all.sample((rand(10) < P) ? (rand(10)+1) : 0)
+      file.puts ([x.size] + x).join(" ")
     end
   end
 end
