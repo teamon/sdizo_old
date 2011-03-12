@@ -30,3 +30,7 @@ GList::~GList(){
 list< Edge > * GList::getTab(){
 	return tab;
 }
+
+int GList::getN(){
+	return n;
+}

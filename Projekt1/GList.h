@@ -15,4 +15,5 @@ class GList {
 		GList(const char*);
 		~GList();
 		list< Edge > * getTab();
+		int getN();
 }; 
