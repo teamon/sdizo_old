@@ -11,6 +11,7 @@ P = ARGV[2].to_i
 case ARGV[0]
 when "matrix"
   File.open("data/matrix_#{N}_#{P}.txt", "w") do |file|
+    file.puts N
     N.times do |i|
       N.times do |j|
         file.write (rand(10) < P) ? (rand(10)+1) : 0
@@ -20,5 +21,11 @@ when "matrix"
     end
   end
 when "list"
-  
+  all = (0..N-1).to_a
+  File.open("data/list_#{N}_#{P}.txt", "w") do |file|
+    file.puts N
+    N.times do |i|
+      file.puts all.sample((rand(10) < P) ? (rand(10)+1) : 0).join(" ")
+    end
+  end
 end
