@@ -1,6 +1,10 @@
 #ifndef __PRIM_H_
 #define __PRIM_H_
 
-void Prim(int kind, const char * filename);
+#include "../GMatrix.h"
+#include "../GList.h"
+
+void PrimMatrix(GMatrix &matrix);
+void PrimList(GList &list);
 
 #endif
