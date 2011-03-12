@@ -10,15 +10,14 @@ GList::GList(const char * filename){
 	
 	in>>n;
 	
-	
 	tab = new list< Edge >[n];
 	int x,peak,weight;
 	for(int i = 0;i<n;i++){
 		in>>x;
-		//tab[i] = new list < Edge >;
-		for(int j=0;j<x;j++)
+		for(int j=0;j<x;j++){
 			in>>peak>>weight;
 			tab[i].push_back(Edge(peak,weight));
+		}
 	} 
 }
 
