@@ -13,6 +13,7 @@ class GMatrix {
 		GMatrix(const char*);
 		~GMatrix();
 		int ** getTab();
+		int getN();
 };
 
 

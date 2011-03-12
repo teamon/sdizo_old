@@ -28,3 +28,7 @@ GMatrix::~GMatrix(){
 int ** GMatrix::getTab(){
 	return tab;
 }
+
+int GMatrix::getN(){
+	return n;
+}
