@@ -31,10 +31,10 @@ when "matrix"
 
     N.times do |i|
       N.times do |j|
-        print ar[i][j]
-        print " "
+        file.write ar[i][j]
+        file.write " "
       end
-      puts
+      file.puts
     end
   end
 
