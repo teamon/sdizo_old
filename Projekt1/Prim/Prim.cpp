@@ -1,15 +1,11 @@
 #include <iostream>
 #include "Node.h"
+#include "Prim.h"
 #include "../GMatrix.h"
 
 using namespace std;
 using namespace prim;
 
-int main(int argc, char const * argv[]){
-	cout << "Prim\n"; 
-	return 0;
+void Prim(int argc, char const * argv[]){
+	cout << "Prim\n";
 }
-
-
-
- 

@@ -1,6 +1,6 @@
 CC      = g++ -Wall -Os
 CXX     = g++ -Wall -Os
-OBJECTS  = main.o GMatrix.o GList.o 
+OBJECTS  = main.o GMatrix.o GList.o Prim/Prim.o
 
 all: main
 
