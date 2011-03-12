@@ -7,12 +7,12 @@ GList::GList(){
 
 GList::GList(const char * filename){
 	ifstream in(filename);
-	
-	in>>n;
+	int p;
+	in >> n >> p;
 	
 	tab = new list< Edge >[n];
 	int start,end,weight;
-	while(!in.eof()){
+	for(int i = 0; i < p; i++){
 		in >> start >> end >> weight;
 		tab[start].push_back(Edge(end,weight));
 		tab[end].push_back(Edge(start,weight));
