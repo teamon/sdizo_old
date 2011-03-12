@@ -22,6 +22,8 @@ when "matrix"
       x = rand(N)
       y = rand(N)
       
+      next if x == y
+      
       w = rand(W)+1
       ar[x][y] = ar[y][x] = w
     }
