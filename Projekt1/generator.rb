@@ -40,14 +40,13 @@ when "matrix"
 when "list"
   all = (0..N-1).to_a
   File.open("data/list_#{N}_#{P}.txt", "w") do |file|
-    file.puts N
-    
-    N.times do |i|
-      (i..N-1).each do |j|
-        if ar[i][j] > 0
-          file.puts "#{i} #{j} #{ar[i][j]}"
-        end
+    all = N.times.map do |i|
+      (i..N-1).map do |j|
+        ar[i][j] > 0 ? "#{i} #{j} #{ar[i][j]}" : nil
       end
-    end
+    end.flatten.reject {|e| e.nil?}
+    
+    file.puts "#{N} #{all.size}"
+    file.puts all.join("\n")
   end
 end
