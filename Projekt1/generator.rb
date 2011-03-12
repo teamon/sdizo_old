@@ -13,14 +13,29 @@ case ARGV[0]
 when "matrix"
   File.open("data/matrix_#{N}_#{P}.txt", "w") do |file|
     file.puts N
+
+    ar = N.times.map {|i| 
+       N.times.map { 0 }
+    }
+
+    (N*P).times.each {
+      x = rand(N)
+      y = rand(N)
+      
+      w = rand(W)+1
+      ar[x][y] = ar[y][x] = w
+    }
+    
+
     N.times do |i|
       N.times do |j|
-        file.write (rand(10) < P) ? (rand(W)+1) : 0
-        file.write " "
+        print ar[i][j]
+        print " "
       end
-      file.puts
+      puts
     end
   end
+
 when "list"
   all = (0..N-1).to_a
   File.open("data/list_#{N}_#{P}.txt", "w") do |file|
