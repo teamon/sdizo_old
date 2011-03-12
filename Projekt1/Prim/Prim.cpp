@@ -9,17 +9,29 @@ void PrimMatrix(GMatrix &matrix){
     
     int N = matrix.getN();
     Node * nodes = new Node[N];
+    bool set[N];
+    
+    for(int i = 0; i < N; i++)
+		set[i] = false;
 	
 	int ** tab = matrix.getTab();
-	int node = 0;
+	int node = 0, min = 0, min_w;
     
-    for(int i = 0; i < N; i++){
-		if(tab[node][i] > 0){
-			nodes[i].weight = tab[node][i];
-			nodes[i].parent = 0; 
+    while(!set[node]){
+		set[node] = true;
+		min_w = INT_MAX;
+		for(int i = 0; i < N; i++){
+			if((tab[node][i] > 0) && (nodes[i].weight > nodes[node].weight)){
+				nodes[i].weight = tab[node][i];
+				nodes[i].parent = node;
+				if( !set[i] && (nodes[i].weight < min_w) ){
+					min = i;
+					min_w = nodes[i].weight;
+				} 
+			}
 		}
-    }
-    
+		node = min;
+	}
     printNodes(nodes,N);
 }
 
