@@ -7,6 +7,7 @@ end
 
 N = ARGV[1].to_i
 P = ARGV[2].to_i
+W = 10
 
 case ARGV[0]
 when "matrix"
@@ -14,7 +15,7 @@ when "matrix"
     file.puts N
     N.times do |i|
       N.times do |j|
-        file.write (rand(10) < P) ? (rand(10)+1) : 0
+        file.write (rand(10) < P) ? (rand(W)+1) : 0
         file.write " "
       end
       file.puts
@@ -23,10 +24,10 @@ when "matrix"
 when "list"
   all = (0..N-1).to_a
   File.open("data/list_#{N}_#{P}.txt", "w") do |file|
-    puts N
+    file.puts N
     N.times do |i|
-      x = all.sample((rand(10) < P) ? (rand(10)+1) : 0)
-      file.puts ([x.size] + x).join(" ")
+      x = all.sample((rand(10) < P) ? (rand(N)+1) : 0).map {|e| [e, rand(W) + 1] }
+      file.puts ([x.size] + x).flatten.join(" ")
     end
   end
 end
