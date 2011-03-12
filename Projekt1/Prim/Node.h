@@ -2,8 +2,10 @@
 #define __PRIM_NODE_H_
 
 namespace prim {
-	struct Node {
+	class Node {
+    public:
 		int weight, parent;
+        Node():weight(-1), parent(-1){};
     };
 }; 
 
