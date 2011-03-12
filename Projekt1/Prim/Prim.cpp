@@ -19,6 +19,8 @@ void PrimMatrix(GMatrix &matrix){
 			nodes[i].parent = 0; 
 		}
     }
+    
+    printNodes(nodes,N);
 }
 
 void PrimList(GList &list){
