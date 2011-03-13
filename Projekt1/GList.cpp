@@ -5,9 +5,8 @@ GList::GList(){
 	tab = NULL;
 } 
 
-GList::GList(const char * filename){
+GList::GList(const char * filename, bool oneway = false){
 	ifstream in(filename);
-	int p;
 	in >> n >> p;
 	
 	tab = new list< Edge >[n];
@@ -15,7 +14,7 @@ GList::GList(const char * filename){
 	for(int i = 0; i < p; i++){
 		in >> start >> end >> weight;
 		tab[start].push_back(Edge(end,weight));
-		tab[end].push_back(Edge(start,weight));
+		if(!oneway) tab[end].push_back(Edge(start,weight));
 	}
 	
 	
@@ -33,4 +32,8 @@ list< Edge > * GList::getTab(){
 
 int GList::getN(){
 	return n;
+}
+
+int GList::getP(){
+	return p;
 }

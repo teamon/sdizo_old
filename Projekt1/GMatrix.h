@@ -1,3 +1,6 @@
+#ifndef __GMATRIX_H_
+#define __GMATRIX_H_
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -17,3 +20,4 @@ class GMatrix {
 };
 
 
+#endif
