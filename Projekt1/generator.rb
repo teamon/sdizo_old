@@ -23,8 +23,7 @@ ar = N.times.map {|i|
   ar[x][y] = ar[y][x] = w
 }
 
-case ARGV[0]
-when "matrix"
+out_matrix = lambda {
   File.open("data/matrix_#{N}_#{P}.txt", "w") do |file|
     file.puts N
 
@@ -36,8 +35,9 @@ when "matrix"
       file.puts
     end
   end
+}
 
-when "list"
+out_list = lambda {
   all = (0..N-1).to_a
   File.open("data/list_#{N}_#{P}.txt", "w") do |file|
     all = N.times.map do |i|
@@ -49,4 +49,16 @@ when "list"
     file.puts "#{N} #{all.size}"
     file.puts all.join("\n")
   end
+}
+
+case ARGV[0]
+when "matrix"
+  out_matrix.()
+when "list"
+  out_list.()
+when "both"
+  out_matrix.()
+  out_list.()
+else
+  puts "error"
 end
