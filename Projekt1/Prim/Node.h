@@ -6,8 +6,8 @@
 namespace prim {
 	class Node {
     public:
-		int weight, parent;
-        Node():weight(INT_MAX), parent(INT_MAX){};
+		int i, weight, parent;
+        Node():i(0),weight(INT_MAX), parent(INT_MAX){};
     };
 }; 
 

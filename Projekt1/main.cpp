@@ -11,15 +11,17 @@ int main (int argc, char const *argv[]){
     
     GList glist = GList(argv[1]);
     
-    list<Edge > * tab = glist.getTab();
+    // list<Edge > * tab = glist.getTab();
     
-    int n = glist.getN();
+    // int n = glist.getN();
     
-    for(int i =0 ; i<n; i++){
-		for(list<Edge>::iterator it = tab[i].begin(); it != tab[i].end(); it++){
-			cout << i << " " <<it->peak << " " << it->weight <<endl; 
-		}
-	}
+    //     for(int i =0 ; i<n; i++){
+    //  for(list<Edge>::iterator it = tab[i].begin(); it != tab[i].end(); it++){
+    //      cout << i << " " << it->peak << " " << it->weight <<endl; 
+    //  }
+    // }
+    
+    PrimList(glist);
     
 
     return 0;
