@@ -15,7 +15,7 @@ int main (int argc, char const *argv[]){
     if(s == "matrix"){
 		GMatrix matrix = GMatrix(argv[2]);
 		PrimMatrix(matrix);
-		
+		KruskalMatrix(matrix);
 	}else{
         // GList glist = GList(argv[2], false);
         // PrimList(glist);

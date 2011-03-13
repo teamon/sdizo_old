@@ -17,6 +17,7 @@ class GList {
 	public :
 		GList();
 		GList(const char*, bool oneway);
+        GList(list <Edge> * t, int n);
 		~GList();
 		list< Edge > * getTab();
 		int getN();

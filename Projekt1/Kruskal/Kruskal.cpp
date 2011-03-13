@@ -21,6 +21,9 @@ void KruskalMatrix(GMatrix &matrix){
 			}
 		}
 	}
+	
+    GList gl = GList(glist, N);
+    KruskalList(gl);
 }
 
 bool cmp(const KEdge &a, const KEdge &b){
@@ -58,6 +61,5 @@ void KruskalList(GList &glist){
     }
     
     cout << "Total : " << total << endl;
-    
     
 }

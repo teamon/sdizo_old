@@ -17,9 +17,18 @@ GList::GList(const char * filename, bool oneway = false){
 		if(!oneway) tab[end].push_back(Edge(start,weight));
 	}
 	
-	
-	
 }
+
+GList::GList(list <Edge> * t, int n){
+    this->n = n;
+    tab = t;
+    
+    p = 0;
+    for(int i=0; i<n; i++){
+        p += tab[i].size();
+    }
+}
+
 
 GList::~GList(){
 	delete [] tab;
