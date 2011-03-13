@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-
+#include <string.h>
 #include "Prim/Prim.h"
 
 
@@ -9,20 +9,14 @@ using namespace std;
 int main (int argc, char const *argv[]){
     cout << "Projekt 1" << endl;
     
-    GList glist = GList(argv[1]);
-    
-    // list<Edge > * tab = glist.getTab();
-    
-    // int n = glist.getN();
-    
-    //     for(int i =0 ; i<n; i++){
-    //  for(list<Edge>::iterator it = tab[i].begin(); it != tab[i].end(); it++){
-    //      cout << i << " " << it->peak << " " << it->weight <<endl; 
-    //  }
-    // }
-    
-    PrimList(glist);
-    
-
+        
+    if(strcmp(argv[1],"matrix")){
+		GMatrix matrix = GMatrix(argv[2]);
+		PrimMatrix(matrix);
+		
+	}else{
+		GList glist = GList(argv[2]);
+		PrimList(glist);
+	}
     return 0;
 }
