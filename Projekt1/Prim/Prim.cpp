@@ -46,7 +46,7 @@ void PrimMatrix(GMatrix &matrix){
 					min = i;
 
 
-		printf("Adding edge %d-%d\n", nodes[min].parent , min );
+        // printf("Adding edge %d-%d\n", nodes[min].parent , min );
 		set[min] = true;
 		total += nodes[min].weight;
 
@@ -60,7 +60,7 @@ void PrimMatrix(GMatrix &matrix){
 	}
 	cout<<"Total : "<<total << endl;
 
-	printNodes(nodes, n);
+    // printNodes(nodes, n);
     
 }
 
@@ -99,6 +99,7 @@ void PrimList(GList &glist){
     int v,w;
     Node * u;
     
+    
     while(!heap.empty()){
         u = *heap.begin();
         heap.erase(heap.begin());
@@ -120,7 +121,15 @@ void PrimList(GList &glist){
         }
     }
     
-    printNodes(nodes, N);
+    
+    int total = 0;
+    for(int i = 0; i < N; i++){
+        total += nodes[i].weight;
+    }
+    
+    cout<<"Total : "<<total << endl;
+	
+    // printNodes(nodes, N);
 }
 
 void printNodes(Node * nodes, int N){
