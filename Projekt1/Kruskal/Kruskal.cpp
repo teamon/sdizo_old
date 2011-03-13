@@ -47,8 +47,17 @@ void KruskalList(GList &glist){
     
     sort(edges, edges+P, cmp);
     
+    int total = 0;
+    
     for(int i=0; i<P; i++){
-        cout << i << ": " << edges[i].a << " " << edges[i].b << "  " << edges[i].weight << endl;
+        KEdge e = edges[i];
+        if(uf.join(e.a, e.b)){
+            // cout << "Joined " << e.a << " with " << e.b << endl;
+            total += e.weight;
+        }
     }
+    
+    cout << "Total : " << total << endl;
+    
     
 }

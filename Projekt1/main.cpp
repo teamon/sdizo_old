@@ -2,6 +2,7 @@
 #include <list>
 #include <string.h>
 #include "Prim/Prim.h"
+#include "Kruskal/Kruskal.h"
 
 
 using namespace std;
@@ -16,8 +17,11 @@ int main (int argc, char const *argv[]){
 		PrimMatrix(matrix);
 		
 	}else{
-		GList glist = GList(argv[2]);
-		PrimList(glist);
+        // GList glist = GList(argv[2], false);
+        // PrimList(glist);
+	
+		GList glist = GList(argv[2], true);
+		KruskalList(glist);
 	}
     return 0;
 }
