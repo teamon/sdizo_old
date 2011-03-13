@@ -1,49 +1,55 @@
 #include <iostream>
 #include "Prim.h"
 #include <set>
+#include <stdio.h>
 
 using namespace std;
 using namespace prim;
 
-void PrimMatrix(GMatrix &matrix){
-	int N = matrix.getN();
-    Node * nodes = new Node[N];
-    
-    bool set[N];
-    for(int i = 0; i < N; i++)
-		set[i] = false;
-		
-	int ** tab = matrix.getTab();
-	int node = 0, min = 0, min_w =  INT_MAX;
-    nodes[0].weight = 0;
-    
-    while(!set[node]){
-		
-		min_w =  INT_MAX;
-		set[node] = true;
-		
-		for(int i = 0; i< N; i++){
-			if((nodes[node].parent != i) && (tab[node][i] > 0) ){
-				if(nodes[i].weight > tab[node][i]){
-					nodes[i].weight = tab[node][i];
-					nodes[i].parent = node;
-				}
-				if(!set[i] && (tab[node][i] < min_w) ){
-					min = i;
-					min_w = tab[node][i];
-				}
-			}
-			
-		}
-        // printNodes(nodes,N);
-        // cout << "node was " << node << endl;
-        // cout << "-------------------" << endl << endl;
-        node = min;
+void updateDistances(int target, int ** weight, int * whoTo, int * d, int n) {
+	int i;
+	for (i = 0; i < n; ++i)
+		if ((weight[target][i] != 0) && (d[i] > weight[target][i])) {
+			d[i] = weight[target][i];
+			whoTo[i] = target;
 	}
+}
+
+void PrimMatrix(GMatrix &matrix){
 	
-    nodes[0].parent = 0;
-	printNodes(nodes,N);
-		
+	int ** weight = matrix.getTab();
+	int n = matrix.getN();
+	char inTree[100];
+	int d[100];
+	int whoTo[100];
+	
+	for (int i = 0; i < n; ++i)
+		d[i] = 100000;
+	for (int i = 0; i < n; ++i)
+		inTree[i] = 0;
+	inTree[0] = 1;
+	updateDistances(0,weight,whoTo,d,n);
+	
+	int total = 0;
+	int treeSize;
+	for (treeSize = 1; treeSize < n; ++treeSize) {
+		int min = -1;
+		for (int i = 0; i < n; ++i)
+			if (!inTree[i])
+				if ((min == -1) || (d[min] > d[i]))
+					min = i;
+
+
+		printf("Adding edge %d-%d\n", whoTo[min] , min );
+		inTree[min] = 1;
+		total += d[min];
+
+		updateDistances(min,weight,whoTo,d,n);
+	}
+	cout<<"Total : "<<total << endl;
+	
+	
+	
 	
 }
 
