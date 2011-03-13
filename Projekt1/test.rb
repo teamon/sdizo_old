@@ -1,33 +1,48 @@
 #!/usr/bin/env ruby
 
-n = 100
+n = 1000
 p = 100
 
-1000.times do |i|
+10.times do |i|
   puts "Test ##{i+1}"
   
   puts "+ Generate #{n} #{p}"
   system("./generator.rb both #{n} #{p}")
   
+  ans = []
+  
   puts "+ Prim / matrix"
-  pm = `./main matrix data/matrix_#{n}_#{p}.txt`
+  ans << `time ./main pmatrix data/matrix_#{n}_#{p}.txt`
 
   puts "+ Prim / list"
-  pl = `./main list data/list_#{n}_#{p}.txt`
+  ans << `time ./main plist data/list_#{n}_#{p}.txt`
+  
+  puts "+ Kruskal / matrix"
+  ans << `time ./main kmatrix data/matrix_#{n}_#{p}.txt`
 
-  if pl == pm
+  puts "+ Kruskal / list"
+  ans << `time ./main klist data/list_#{n}_#{p}.txt`
+
+  f = ans.first
+  
+
+  if ans.all?{|e| e == f}
     puts "  Correct :D"
   else
     puts "  Error :("
     puts
     
-    puts "matrix:"
-    puts "=" * 20
-    puts pm
-    puts
-    puts "list:"
-    puts "=" * 20
-    puts pl
+    puts "- Prim / matrix"
+    puts ans[0]
+
+    puts "- Prim / list"
+    puts ans[1]
+
+    puts "- Kruskal / matrix"
+    puts ans[2]
+
+    puts "- Kruskal / list"
+    puts ans[3]
     
     exit
   end
