@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-n = 5
-p = 10
+n = 100
+p = 100
 
-10.times do |i|
+1000.times do |i|
   puts "Test ##{i+1}"
   
   puts "+ Generate #{n} #{p}"
