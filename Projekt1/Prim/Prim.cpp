@@ -6,14 +6,6 @@
 using namespace std;
 using namespace prim;
 
-void updateDistances(int target, int ** weight, int * whoTo, int * d, int n) {
-	int i;
-	for (int i = 0; i < n; ++i)
-		if ((weight[target][i] != 0) && (d[i] > weight[target][i])) {
-			d[i] = weight[target][i];
-			whoTo[i] = target;
-	}
-}
 
 void PrimMatrix(GMatrix &matrix){
 	
@@ -30,7 +22,6 @@ void PrimMatrix(GMatrix &matrix){
 	}
 		
 	set[0] = true;
-    // updateDistances(0,weight,whoTo,d,n);
 	for (int i = 0; i < n; ++i)
 		if ((weight[0][i] != 0) && (nodes[i].weight > weight[0][i])) {
 			nodes[i].weight = weight[0][i];
@@ -46,11 +37,11 @@ void PrimMatrix(GMatrix &matrix){
 					min = i;
 
 
-        // printf("Adding edge %d-%d\n", nodes[min].parent , min );
+        
 		set[min] = true;
 		total += nodes[min].weight;
 
-        // updateDistances(min,weight,whoTo,d,n);s
+        
 		for (int i = 0; i < n; ++i){
     		if ((weight[min][i] != 0) && (nodes[i].weight > weight[min][i])) {
     			nodes[i].weight = weight[min][i];
@@ -60,7 +51,7 @@ void PrimMatrix(GMatrix &matrix){
 	}
 	cout<<"Total : "<<total << endl;
 
-    // printNodes(nodes, n);
+    
     
 }
 
@@ -79,7 +70,7 @@ void PrimList(GList &glist){
     set<Node *, cmp> heap;
     heap.clear();
     
-    // cout << "N: " << N << endl;
+   
     
     bool gset[N];
     
@@ -87,11 +78,11 @@ void PrimList(GList &glist){
         gset[i] = false;
         Node * x = &nodes[i];
         x->i = i;
-        // cout << "node: " << x->i << " " << x->parent << " " << x->weight << endl;
+       
         heap.insert(x);
     }
     
-    // cout << "h.size: " << heap.size() << endl;
+   
     
     nodes[0].weight = 0;
     nodes[0].parent = 0;
@@ -110,7 +101,6 @@ void PrimList(GList &glist){
             
             if(!gset[v]){
                 w = it->weight;
-                // cout << "w=" << w << ", nodes[v].weight=" << nodes[v].weight << endl;
                 if(w < nodes[v].weight){
                     heap.erase(heap.find(&nodes[v]));
                     nodes[v].weight = w;
@@ -129,7 +119,6 @@ void PrimList(GList &glist){
     
     cout<<"Total : "<<total << endl;
 	
-    // printNodes(nodes, N);
 }
 
 void printNodes(Node * nodes, int N){
