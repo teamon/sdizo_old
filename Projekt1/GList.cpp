@@ -19,14 +19,28 @@ GList::GList(const char * filename, bool oneway = false){
 	
 }
 
-GList::GList(list <Edge> * t, int n){
-    this->n = n;
-    tab = t;
+GList::GList(GMatrix * matrix){
+        
+    int ** tab_pom = matrix -> getTab();
+	n = matrix -> getN();
+	tab = new list< Edge >[n];
+ 	for(int i=0; i<n; i++){
+		for(int j=i+1; j < n; j++){
+			if(tab_pom[i][j] != 0){
+				tab[i].push_back(Edge(j,tab_pom[i][j]));
+				tab[j].push_back(Edge(i,tab_pom[i][j]));
+			}
+		}
+	}
+    
     
     p = 0;
     for(int i=0; i<n; i++){
         p += tab[i].size();
     }
+    
+   
+	
 }
 
 

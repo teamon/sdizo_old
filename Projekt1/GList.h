@@ -6,6 +6,7 @@
 #include <list>
 
 #include "Edge.h"
+#include "GMatrix.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ class GList {
 	public :
 		GList();
 		GList(const char*, bool oneway);
-        GList(list <Edge> * t, int n);
+        GList(GMatrix * matrix);
 		~GList();
 		list< Edge > * getTab();
 		int getN();

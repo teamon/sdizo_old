@@ -10,20 +10,10 @@ using namespace std;
 // using namespace kruskal;
 
 void KruskalMatrix(GMatrix &matrix){
-	int ** tab = matrix.getTab();
-	int N = matrix.getN();
-    list<Edge> * glist = new list<Edge>[N];
-	for(int i=0; i<N; i++){
-		for(int j=i+1; j < N; j++){
-			if(tab[i][j] != 0){
-				glist[i].push_back(Edge(j,tab[i][j]));
-				glist[j].push_back(Edge(i,tab[i][j]));
-			}
-		}
-	}
 	
-    GList gl = GList(glist, N);
-    KruskalList(gl);
+	
+   GList gl = GList(&matrix);
+   KruskalList(gl);
 }
 
 bool cmp(const KEdge &a, const KEdge &b){
