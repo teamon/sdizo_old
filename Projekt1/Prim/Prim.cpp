@@ -23,7 +23,7 @@ void PrimMatrix(GMatrix &matrix){
 		set[node] = true;
 		
 		for(int i = 0; i< N; i++){
-			if((nodes[node].parent != i) && (tab[node][i] > 0)){
+			if((nodes[node].parent != i) && (tab[node][i] > 0) ){
 				if(nodes[i].weight > tab[node][i]){
 					nodes[i].weight = tab[node][i];
 					nodes[i].parent = node;
@@ -35,8 +35,13 @@ void PrimMatrix(GMatrix &matrix){
 			}
 			
 		}
-		node = min;
+        // printNodes(nodes,N);
+        // cout << "node was " << node << endl;
+        // cout << "-------------------" << endl << endl;
+        node = min;
 	}
+	
+    nodes[0].parent = 0;
 	printNodes(nodes,N);
 		
 	
@@ -105,5 +110,3 @@ void printNodes(Node * nodes, int N){
 	for(int i=0; i<N; i++)
 		cout << "[" << i << "] : p = " << nodes[i].parent << " w = " << nodes[i].weight << endl;
 }
-
-

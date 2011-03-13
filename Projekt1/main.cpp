@@ -9,8 +9,9 @@ using namespace std;
 int main (int argc, char const *argv[]){
     cout << "Projekt 1" << endl;
     
+    string s = string(argv[1]);
         
-    if(strcmp(argv[1],"matrix")){
+    if(s == "matrix"){
 		GMatrix matrix = GMatrix(argv[2]);
 		PrimMatrix(matrix);
 		
