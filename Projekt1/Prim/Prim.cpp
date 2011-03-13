@@ -8,7 +8,7 @@ using namespace prim;
 
 void updateDistances(int target, int ** weight, int * whoTo, int * d, int n) {
 	int i;
-	for (i = 0; i < n; ++i)
+	for (int i = 0; i < n; ++i)
 		if ((weight[target][i] != 0) && (d[i] > weight[target][i])) {
 			d[i] = weight[target][i];
 			whoTo[i] = target;
@@ -19,38 +19,49 @@ void PrimMatrix(GMatrix &matrix){
 	
 	int ** weight = matrix.getTab();
 	int n = matrix.getN();
-	char inTree[100];
-	int d[100];
-	int whoTo[100];
 	
+	bool set[100];
+	
+    Node nodes[n];
+	
+	for (int i = 0; i < n; ++i){
+		nodes[i].weight = INT_MAX;
+		set[i] = false;
+	}
+		
+	set[0] = true;
+    // updateDistances(0,weight,whoTo,d,n);
 	for (int i = 0; i < n; ++i)
-		d[i] = 100000;
-	for (int i = 0; i < n; ++i)
-		inTree[i] = 0;
-	inTree[0] = 1;
-	updateDistances(0,weight,whoTo,d,n);
+		if ((weight[0][i] != 0) && (nodes[i].weight > weight[0][i])) {
+			nodes[i].weight = weight[0][i];
+			nodes[i].parent = 0;
+	}
 	
 	int total = 0;
-	int treeSize;
-	for (treeSize = 1; treeSize < n; ++treeSize) {
+	for (int k = 1; k < n; ++k) {
 		int min = -1;
 		for (int i = 0; i < n; ++i)
-			if (!inTree[i])
-				if ((min == -1) || (d[min] > d[i]))
+			if (!set[i])
+				if ((min == -1) || (nodes[min].weight > nodes[i].weight))
 					min = i;
 
 
-		printf("Adding edge %d-%d\n", whoTo[min] , min );
-		inTree[min] = 1;
-		total += d[min];
+		printf("Adding edge %d-%d\n", nodes[min].parent , min );
+		set[min] = true;
+		total += nodes[min].weight;
 
-		updateDistances(min,weight,whoTo,d,n);
+        // updateDistances(min,weight,whoTo,d,n);s
+		for (int i = 0; i < n; ++i){
+    		if ((weight[min][i] != 0) && (nodes[i].weight > weight[min][i])) {
+    			nodes[i].weight = weight[min][i];
+    			nodes[i].parent = min;
+			}
+    	}
 	}
 	cout<<"Total : "<<total << endl;
-	
-	
-	
-	
+
+	printNodes(nodes, n);
+    
 }
 
 struct cmp {
