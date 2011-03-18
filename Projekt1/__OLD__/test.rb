@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-n = 100
-p = 10
+n = 1000
+p = 100
 
 10.times do |i|
   puts "Test ##{i+1}"
